@@ -1,38 +1,50 @@
-.App {
-  text-align: center;
+* {
+  scroll-behavior: smooth;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background: linear-gradient(to right top, #f6f9fc, #e9f0f8);
+  font-family: 'Inter', sans-serif;
+  color: #333;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.chart-wrapper {
+  overflow: visible;
+  position: relative;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.recharts-tooltip-wrapper {
+  z-index: 9999;
+  padding: 8px 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
 }
 
-.App-link {
-  color: #61dafb;
+.recharts-wrapper *:focus,
+.recharts-bar-rectangle:focus,
+.recharts-pie-sector:focus,
+svg:focus,
+svg *:focus {
+  outline: none;
+  stroke: none;
+  box-shadow: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.recharts-bar-rectangle {
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.recharts-bar-rectangle:hover {
+  filter: drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.15));
+  transform: scaleY(1.05);
+}
+
+.recharts-cartesian-axis-tick text {
+  font-size: 12px;
+  fill: #555;
+}
+
+.recharts-legend-item text {
+  font-weight: 500;
+  font-size: 13px;
 }
