@@ -44,6 +44,8 @@ acv-dashboard/
 ├── screenshots/        # Screenshots for README
 └── README.md
 
+---
+
 # 🛠️ Getting Started
 
 1. **Clone the repository**  
@@ -55,13 +57,15 @@ acv-dashboard/
     npm install
 3. **Start the frontend and backend**
 Express server (port 3001)
-```bash
-npm run server
+    ```bash
+    npm run server
 
 React frontend (port 3000)
-```bash
-npm start
+    ```bash
+    npm start
 The frontend expects the backend API to run on http://localhost:3001.
+
+---
 
 ## 📡 API Endpoints
 
@@ -73,6 +77,7 @@ The frontend expects the backend API to run on http://localhost:3001.
 | `/api/acv-range`         | ACV by range buckets                   |
 | `/api/acv-by-quarter`    | Combined view with all metrics         |
 
+---
 
 📷 Screenshots
     Check out Screenshots folder.
