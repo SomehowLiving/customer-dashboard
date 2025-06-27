@@ -65,7 +65,8 @@ Express server (port 3001)
 React frontend (port 3000)
     ```bash
     npm start
-The frontend expects the backend API to run on http://localhost:3001.
+
+- The frontend expects the backend API to run on http://localhost:3001.
 
 ---
 
