@@ -36,14 +36,24 @@ Built with **React**, **TypeScript**, **Recharts**, **Material UI**, and **Expre
 
 ```yaml
 acv-dashboard/
-├── backend/            # Express server + JSON APIs
-├── frontend/           # React app (MUI + Recharts)
-│   ├── components/     # Reusable chart & UI components
-│   ├── utils/          # Formatters, color maps, etc.
-│   ├── pages/          # Dashboard layout views
-│   └── assets/         # Icons, screenshots
-├── screenshots/        # Screenshots for README
-└── README.md
+├── backend/ # Express server and APIs
+│ ├── data/ # Static or mock data files
+│ ├── src/
+│ │ ├── controllers/ # Logic handling for routes
+│ │ ├── routes/ # API route definitions
+│ │ ├── utils/ # Helper functions (e.g., validation, parsing)
+│ │ ├── server.js # Main server file (JS version)
+│ │ └── server.ts # Main server file (TS version)
+│
+├── frontend/ # React frontend (MUI + Recharts)
+│ └── src/
+│ ├── components/ # Reusable UI and chart components
+│ ├── pages/ # Dashboard views/layouts
+│ ├── theme/ # Styling and theming
+│ └── utils/ # Helpers, formatters, etc.
+│
+├── screenshots/ # Images for README/docs
+└── README.md # Project documentation
 
 ```
 
