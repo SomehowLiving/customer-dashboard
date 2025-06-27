@@ -45,9 +45,10 @@ acv-dashboard/
 ├── screenshots/        # Screenshots for README
 └── README.md
 
----
+```
 
-# 🛠️ Getting Started
+
+## 🛠️ Getting Started
 
 1. **Clone the repository**  
    ```bash
