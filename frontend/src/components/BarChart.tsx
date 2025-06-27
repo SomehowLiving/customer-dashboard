@@ -39,10 +39,6 @@ const flattenedData = formatChartData(data, {
 
   return (
     <ResponsiveContainer width="100%" height={400}>
-      {/* <ReBarChart
-        data={flattenedData}
-        margin={{ top: 10, right: 10, left: 20, bottom: 20 }}
-      > */}
       <ReBarChart data={flattenedData} margin={{ top: 10, right: 10, bottom: 60, left: 20 }}>
         <CartesianGrid stroke="rgba(0,0,0,0.05)" vertical={false} />
         <XAxis dataKey="quarter" />
@@ -59,7 +55,6 @@ const flattenedData = formatChartData(data, {
             activeBar={{
               style: {
                 filter: 'drop-shadow(0 0 6px rgba(0, 0, 0, 0.2))',
-                transform: 'scale(1.04)',
                 transition: 'all 0.3s ease',
               },
             }}
