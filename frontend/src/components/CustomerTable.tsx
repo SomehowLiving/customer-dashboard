@@ -16,7 +16,8 @@ type Props = {
 };
 
 const CustomerDataTable = ({ data }: Props) => {
-  if (!data || data.length === 0) return <Typography>No data available.</Typography>;
+  if (!data || data.length === 0)
+    return <Typography variant="body1">No data available.</Typography>;
 
   const totalRow = data.reduce(
     (acc, item) => {
@@ -36,61 +37,79 @@ const CustomerDataTable = ({ data }: Props) => {
   );
 
   return (
-    <TableContainer component={Paper} sx={{ mt: 3, borderRadius: 2 }}>
+    <TableContainer
+      component={Paper}
+      sx={{
+        mt: 4,
+        borderRadius: 3,
+        boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
+      }}
+    >
       <Table size="small">
-        <TableHead sx={{ backgroundColor: '#f5f5f5' }}>
-          <TableRow>
+        <TableHead>
+          <TableRow sx={{ backgroundColor: '#f9fafb' }}>
             <TableCell><strong>Quarter</strong></TableCell>
-            <TableCell align="right" sx={{ color: '#1976d2' }}>Existing Opps</TableCell>
-            <TableCell align="right" sx={{ color: '#ef6c00' }}>New Opps</TableCell>
-            <TableCell align="right">Total Opps</TableCell>
-            <TableCell align="right" sx={{ color: '#1976d2' }}>Existing ACV</TableCell>
-            <TableCell align="right" sx={{ color: '#ef6c00' }}>New ACV</TableCell>
-            <TableCell align="right">Total ACV</TableCell>
-            <TableCell align="right" sx={{ color: '#1976d2' }}>Existing %</TableCell>
-            <TableCell align="right" sx={{ color: '#ef6c00' }}>New %</TableCell>
+            <TableCell align="right" sx={{ color: 'primary.main' }}>Existing Opps</TableCell>
+            <TableCell align="right" sx={{ color: 'warning.main' }}>New Opps</TableCell>
+            <TableCell align="right"><strong>Total Opps</strong></TableCell>
+            <TableCell align="right" sx={{ color: 'primary.main' }}>Existing ACV</TableCell>
+            <TableCell align="right" sx={{ color: 'warning.main' }}>New ACV</TableCell>
+            <TableCell align="right"><strong>Total ACV</strong></TableCell>
+            <TableCell align="right" sx={{ color: 'primary.main' }}>Existing %</TableCell>
+            <TableCell align="right" sx={{ color: 'warning.main' }}>New %</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {data.map((row) => (
-            <TableRow key={row.quarter}>
+            <TableRow
+              key={row.quarter}
+              hover
+              sx={{ transition: 'background-color 0.2s ease-in-out' }}
+            >
               <TableCell><strong>{row.quarter}</strong></TableCell>
-              <TableCell align="right" sx={{ color: '#1976d2' }}>{row.existing.opps}</TableCell>
-              <TableCell align="right" sx={{ color: '#ef6c00' }}>{row.new.opps}</TableCell>
+              <TableCell align="right" sx={{ color: 'primary.main' }}>{row.existing.opps}</TableCell>
+              <TableCell align="right" sx={{ color: 'warning.main' }}>{row.new.opps}</TableCell>
               <TableCell align="right">{row.total.opps}</TableCell>
-              <TableCell align="right" sx={{ color: '#1976d2' }}>
+              <TableCell align="right" sx={{ color: 'primary.main' }}>
                 {formatCurrency(row.existing.acv)}
               </TableCell>
-              <TableCell align="right" sx={{ color: '#ef6c00' }}>
+              <TableCell align="right" sx={{ color: 'warning.main' }}>
                 {formatCurrency(row.new.acv)}
               </TableCell>
-              <TableCell align="right">{formatCurrency(row.total.acv)}</TableCell>
-              <TableCell align="right" sx={{ color: '#1976d2' }}>
+              <TableCell align="right">
+                {formatCurrency(row.total.acv)}
+              </TableCell>
+              <TableCell align="right" sx={{ color: 'primary.main' }}>
                 {row.existing.percent}%
               </TableCell>
-              <TableCell align="right" sx={{ color: '#ef6c00' }}>
+              <TableCell align="right" sx={{ color: 'warning.main' }}>
                 {row.new.percent}%
               </TableCell>
             </TableRow>
           ))}
 
-          {/* Total Row */}
-          <TableRow sx={{ backgroundColor: '#f0f0f0', fontWeight: 'bold' }}>
+          <TableRow
+            sx={{
+              backgroundColor: '#f3f4f6',
+              fontWeight: 'bold',
+              borderTop: '2px solid #e0e0e0',
+            }}
+          >
             <TableCell><strong>Total</strong></TableCell>
-            <TableCell align="right" sx={{ color: '#1976d2' }}>{totalRow.existing.opps}</TableCell>
-            <TableCell align="right" sx={{ color: '#ef6c00' }}>{totalRow.new.opps}</TableCell>
+            <TableCell align="right" sx={{ color: 'primary.main' }}>{totalRow.existing.opps}</TableCell>
+            <TableCell align="right" sx={{ color: 'warning.main' }}>{totalRow.new.opps}</TableCell>
             <TableCell align="right">{totalRow.total.opps}</TableCell>
-            <TableCell align="right" sx={{ color: '#1976d2' }}>
+            <TableCell align="right" sx={{ color: 'primary.main' }}>
               {formatCurrency(totalRow.existing.acv)}
             </TableCell>
-            <TableCell align="right" sx={{ color: '#ef6c00' }}>
+            <TableCell align="right" sx={{ color: 'warning.main' }}>
               {formatCurrency(totalRow.new.acv)}
             </TableCell>
             <TableCell align="right">{formatCurrency(totalRow.total.acv)}</TableCell>
-            <TableCell align="right" sx={{ color: '#1976d2' }}>
+            <TableCell align="right" sx={{ color: 'primary.main' }}>
               {Math.round((totalRow.existing.acv / totalRow.total.acv) * 100)}%
             </TableCell>
-            <TableCell align="right" sx={{ color: '#ef6c00' }}>
+            <TableCell align="right" sx={{ color: 'warning.main' }}>
               {Math.round((totalRow.new.acv / totalRow.total.acv) * 100)}%
             </TableCell>
           </TableRow>

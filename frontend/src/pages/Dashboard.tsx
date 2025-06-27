@@ -14,7 +14,7 @@ const Dashboard = () => {
   const [teamData, setTeamData] = useState([]);
   const [acvData, setAcvData] = useState([]);
 
-  const BASE_URL = 'https://crispy-fiesta-x5pr4945rp53p95q-3001.app.github.dev';
+  const BASE_URL = 'http://localhost:3001';
 
   useEffect(() => {
     axios.get(`${BASE_URL}/api/customer-type`).then(res => setCustomerData(res.data));
