@@ -1,3 +1,4 @@
+---
 # 📊 ACV Dashboard
 
 A responsive and interactive dashboard to visualize **Annual Contract Value (ACV)** trends across customer types, industries, sales teams, and ACV ranges.
@@ -33,7 +34,7 @@ Built with **React**, **TypeScript**, **Recharts**, **Material UI**, and **Expre
 
 ## 📁 Folder Structure
 
-```bash
+```yaml
 acv-dashboard/
 ├── backend/            # Express server + JSON APIs
 ├── frontend/           # React app (MUI + Recharts)
@@ -82,11 +83,15 @@ The frontend expects the backend API to run on http://localhost:3001.
 📷 Screenshots
     Check out Screenshots folder.
 
+---
+
 ## ✨ Future Improvements
 - 🔎 Filtering by quarter, industry, or range  
 - 📤 CSV download/export for tables  
 - 🔐 Add JWT-authenticated login (admin vs. viewer)  
 - ☁️ Deploy via Netlify + Render or Vercel + Railway  
+
+---
 
 ### 📄 License
 This project is licensed under the MIT License.
@@ -97,3 +102,4 @@ Feel free to open an issue or submit a PR.
 
 ### 👨‍💻 Author
 Made by @SomehowLiving
+
