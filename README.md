@@ -60,7 +60,7 @@ acv-dashboard/
 3. **Start the frontend and backend**
 - Express server (port 3001)
     ```bash
-    npm run server
+    npm run dev
 
 - React frontend (port 3000)
     ```bash
