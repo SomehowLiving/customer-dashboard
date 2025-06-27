@@ -25,7 +25,6 @@ const formattedData = formatChartData(data, {
   return (
     <ResponsiveContainer width="100%" height={350}>
       <BarChart data={formattedData} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-        {/* <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.05)" /> */}
         <CartesianGrid stroke="rgba(0,0,0,0.05)" vertical={false} />
         <XAxis dataKey="quarter" />
         <YAxis tickFormatter={(val) => formatCurrency(val)} />

@@ -22,6 +22,9 @@ type Props = {
   keys?: string[];
 };
 
+const isMobile = window.innerWidth < 600;
+const barSize = isMobile ? 20 : 36;
+
 const GroupedBarChart = ({ data, keys }: Props) => {
   if (!data || data.length === 0) return <p>No data available</p>;
 
@@ -38,7 +41,7 @@ const GroupedBarChart = ({ data, keys }: Props) => {
 
   return (
     <ResponsiveContainer width="100%" height={420}>
-      <ReBarChart data={flattenedData} margin={{ top: 60, right: 30, bottom: 40, left: 20 }}>
+      <ReBarChart data={flattenedData} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
         <CartesianGrid stroke="rgba(0,0,0,0.05)" vertical={false} />
         <XAxis dataKey="quarter" />
         <YAxis tickFormatter={formatCurrency} />
@@ -49,7 +52,7 @@ const GroupedBarChart = ({ data, keys }: Props) => {
             key={key}
             dataKey={key}
             fill={COLORS[idx % COLORS.length]}
-            barSize={36}
+            barSize={barSize}
           >
             <LabelList dataKey={`${key}_pct`} content={(props) => <CustomLabel {...props} fill="#fff" />} />
           </Bar>

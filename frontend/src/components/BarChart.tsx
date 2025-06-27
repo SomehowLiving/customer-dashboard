@@ -20,6 +20,8 @@ type Props = {
   data: any[];
   keys?: string[];
 };
+const isMobile = window.innerWidth < 600;
+const barSize = isMobile ? 20 : 36;
 
 const BarChart = ({ data, keys }: Props) => {
   if (!data || data.length === 0) return <p>No data</p>;
@@ -37,10 +39,11 @@ const flattenedData = formatChartData(data, {
 
   return (
     <ResponsiveContainer width="100%" height={400}>
-      <ReBarChart
+      {/* <ReBarChart
         data={flattenedData}
         margin={{ top: 10, right: 10, left: 20, bottom: 20 }}
-      >
+      > */}
+      <ReBarChart data={flattenedData} margin={{ top: 10, right: 10, bottom: 60, left: 20 }}>
         <CartesianGrid stroke="rgba(0,0,0,0.05)" vertical={false} />
         <XAxis dataKey="quarter" />
         <YAxis tickFormatter={(val) => formatCurrency(val)} />
@@ -52,7 +55,7 @@ const flattenedData = formatChartData(data, {
             dataKey={key}
             stackId="a"
             fill={COLORS[idx % COLORS.length]}
-            barSize={36}
+            barSize={barSize}
             activeBar={{
               style: {
                 filter: 'drop-shadow(0 0 6px rgba(0, 0, 0, 0.2))',
