@@ -5,7 +5,7 @@ A responsive and interactive dashboard to visualize **Annual Contract Value (ACV
 
 Built with **React**, **TypeScript**, **Recharts**, **Material UI**, and **Express.js**.
 
-![Dashboard Preview](./screenshots/customer-type-acv-overview.png) <!-- Replace with actual screenshot file -->
+![Dashboard Preview](../screenshots/customer-type-acv-overview.png) <!-- Replace with actual screenshot file -->
 
 ---
 
