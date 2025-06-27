@@ -8,8 +8,9 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-import { formatCurrency} from '../utils/format';
-import {COLORS} from '../utils/colors';
+import { formatCurrency } from '../utils/format';
+import { COLORS } from '../utils/colors';
+import ChartTooltip from './CustomTooltip';
 
 type Props = {
   data: any[]; // customerData, acvRangeData, etc.
@@ -49,25 +50,28 @@ const DonutChart = ({ data, category = 'customer' }: Props) => {
 
   const total = pieData.reduce((acc, item) => acc + item.value, 0);
 
+  const renderLabel = ({ value, percent }: any) => {
+    return `${Math.round(percent * 100)}%`;
+  };
   const renderCenterText = (total: number) => {
-  return (
-    <text
-      x="50%"
-      y="50%"
-      textAnchor="middle"
-      dominantBaseline="middle"
-      style={{ fontSize: '16px', fontWeight: 600 }}
-    >
-      Total
-      <tspan x="50%" dy="1.4em" fontSize="14px" fontWeight="500">
-        {formatCurrency(total)}
-      </tspan>
-    </text>
-  );
-};
+    return (
+      <text
+        x="50%"
+        y="50%"
+        textAnchor="middle"
+        dominantBaseline="middle"
+        style={{ fontSize: '16px', fontWeight: 600 }}
+      >
+        Total
+        <tspan x="50%" dy="1.4em" fontSize="14px" fontWeight="500">
+          {formatCurrency(total)}
+        </tspan>
+      </text>
+    );
+  };
 
   return (
-    <ResponsiveContainer width="100%" height={300}>
+    <ResponsiveContainer width="100%" height={340}>
       <PieChart>
         <Pie
           data={pieData}
@@ -77,7 +81,9 @@ const DonutChart = ({ data, category = 'customer' }: Props) => {
           cy="50%"
           innerRadius={70}
           outerRadius={100}
-          label={false}
+          // label={false}
+          label={renderLabel}
+          labelLine={false}
         >
           {pieData.map((_, idx) => (
             <Cell key={idx} fill={COLORS[idx % COLORS.length]} />
@@ -85,9 +91,7 @@ const DonutChart = ({ data, category = 'customer' }: Props) => {
         </Pie>
         {/* Center label */}
         {renderCenterText(total)}
-        <Tooltip
-          formatter={(value: any) => formatCurrency(value)}
-        />
+        <Tooltip content={<ChartTooltip />} />
         <Legend />
       </PieChart>
     </ResponsiveContainer>

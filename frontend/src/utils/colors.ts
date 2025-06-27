@@ -6,3 +6,8 @@ export const COLORS = [
   '#f44336', // red
   '#ff9800', // amber
 ];
+
+export const CATEGORY_COLORS = {
+  existing: '#1976d2',
+  new: '#ef6c00',
+};

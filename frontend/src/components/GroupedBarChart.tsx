@@ -8,10 +8,14 @@ import {
   Legend,
   CartesianGrid,
   ResponsiveContainer,
+  LabelList,
 } from 'recharts';
 
 import { formatCurrency } from '../utils/format';
 import { COLORS } from '../utils/colors';
+import CustomTooltip from './CustomTooltip';
+import CustomLabel from './CustomLabel';
+import { formatChartData } from '../utils/dataTransform';
 
 type Props = {
   data: any[];
@@ -26,43 +30,16 @@ const GroupedBarChart = ({ data, keys }: Props) => {
     keys ||
     Object.keys(data[0]?.teams || data[0]?.industries || data[0]?.ranges || {}).slice(0, 6);
 
-  // Flatten the data for Recharts
-  const flattenedData = data.map((item) => {
-    const section = item.teams || item.industries || item.ranges || {};
-    const row: any = { quarter: item.quarter };
-    detectedKeys.forEach((key) => {
-      row[key] = section[key]?.acv || 0;
-    });
-    return row;
+  const flattenedData = formatChartData(data, {
+    sectionKey: 'teams',
+    mode: 'grouped',
+    keys: detectedKeys,
   });
 
-  const CustomTooltip = ({ active, payload, label }: any) => {
-    if (!active || !payload?.length) return null;
-
-    return (
-      <div
-        style={{
-          background: 'white',
-          border: '1px solid #ddd',
-          borderRadius: 8,
-          padding: 10,
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-        }}
-      >
-        <strong>{label}</strong>
-        {payload.map((entry: any, index: number) => (
-          <div key={index} style={{ color: entry.color }}>
-            {entry.name}: {formatCurrency(entry.value)}
-          </div>
-        ))}
-      </div>
-    );
-  };
-
   return (
-    <ResponsiveContainer width="100%" height={300}>
-      <ReBarChart data={flattenedData} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-        <CartesianGrid strokeDasharray="3 3" />
+    <ResponsiveContainer width="100%" height={420}>
+      <ReBarChart data={flattenedData} margin={{ top: 60, right: 30, bottom: 40, left: 20 }}>
+        <CartesianGrid stroke="rgba(0,0,0,0.05)" vertical={false} />
         <XAxis dataKey="quarter" />
         <YAxis tickFormatter={formatCurrency} />
         <Tooltip cursor={{ fill: 'transparent' }} content={<CustomTooltip />} />
@@ -72,10 +49,12 @@ const GroupedBarChart = ({ data, keys }: Props) => {
             key={key}
             dataKey={key}
             fill={COLORS[idx % COLORS.length]}
-            barSize={30}
-          />
+            barSize={36}
+          >
+            <LabelList dataKey={`${key}_pct`} content={(props) => <CustomLabel {...props} fill="#fff" />} />
+          </Bar>
         ))}
-        
+
       </ReBarChart>
     </ResponsiveContainer>
   );
